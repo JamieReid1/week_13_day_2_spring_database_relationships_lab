@@ -1,5 +1,6 @@
 package com.example.RelationshipsLab;
 
+import com.example.RelationshipsLab.models.Department;
 import com.example.RelationshipsLab.models.Employee;
 import org.junit.Before;
 import org.junit.Test;
@@ -9,11 +10,13 @@ import static org.junit.Assert.assertEquals;
 public class EmployeeTest {
 
     Employee employee;
+    Department department;
 
     @Before
     public void before(){
 
-        employee = new Employee("Joe", "Bloggs", 34546587);
+        department = new Department("CodeClan");
+        employee = new Employee("Joe", "Bloggs", 34546587, department);
 
     }
 

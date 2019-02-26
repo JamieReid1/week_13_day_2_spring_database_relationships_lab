@@ -9,7 +9,6 @@ public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "first_name")
@@ -21,10 +20,15 @@ public class Employee {
     @Column(name = "employee_no")
     private int employeeNo;
 
-    public Employee(String firstName, String lastName, int employeeNo) {
+    @ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+
+    public Employee(String firstName, String lastName, int employeeNo, Department department) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.employeeNo = employeeNo;
+        this.department = department;
     }
 
     public Employee() {
@@ -61,4 +65,13 @@ public class Employee {
     public void setEmployeeNo(int employeeNo) {
         this.employeeNo = employeeNo;
     }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
 }
