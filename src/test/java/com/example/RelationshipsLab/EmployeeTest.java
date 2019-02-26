@@ -49,5 +49,5 @@ public class EmployeeTest {
         employee.setEmployeeNo(1);
         assertEquals(1, employee.getEmployeeNo());
     }
-    
+
 }
