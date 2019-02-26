@@ -59,7 +59,23 @@ public class RelationshipsLabApplicationTests {
 		projectRepository.save(project);
 	}
 
+	@Test
+	public void canAddProjectToEmployee(){
+		Department department = new Department("CodeClan");
+		departmentRepository.save(department);
 
+		Employee employee = new Employee("Joe", "Bloggs", 1, department);
+		employeeRepository.save(employee);
+
+		Project project = new Project("Lab", 1);
+		projectRepository.save(project);
+
+		project.addEmployee(employee);
+		projectRepository.save(project);
+
+		employee.addProject(project);
+		employeeRepository.save(employee);
+	}
 
 
 }

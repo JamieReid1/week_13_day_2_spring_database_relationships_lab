@@ -1,6 +1,10 @@
 package com.example.RelationshipsLab.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "projects")
@@ -17,9 +21,28 @@ public class Project {
     @Column(name = "no_days")
     private int noDays;
 
+    @JsonIgnore
+    @ManyToMany
+    @JoinTable(
+            name = "employees_projects",
+            joinColumns = { @JoinColumn(
+                    name = "project_id",
+                    nullable = false,
+                    updatable = false)
+            },
+
+            inverseJoinColumns = { @JoinColumn(
+                    name = "employee_id",
+                    nullable = false,
+                    updatable = false)
+            }
+    )
+    private List<Employee> employees;
+
     public Project(String name, int noDays) {
         this.name = name;
         this.noDays = noDays;
+        this.employees = new ArrayList<>();
     }
 
     public Project() {
@@ -47,5 +70,9 @@ public class Project {
 
     public void setNoDays(int noDays) {
         this.noDays = noDays;
+    }
+
+    public void addEmployee(Employee employee){
+        this.employees.add(employee);
     }
 }
